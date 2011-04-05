@@ -14,6 +14,11 @@ describe UsersController do
       response.should have_selector("title", :content => "Sign in")
     end
 
+    it "should have a name field" do
+      get :new
+      response.should have_selector("input", :type => "text")
+    end
+
   end
 
   describe "GET 'show'" do
