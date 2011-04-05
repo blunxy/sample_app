@@ -10,7 +10,7 @@
       <%= render 'layouts/header' %>
       <section class="round">
 	<% flash.each do |k,v| %>
-	<div class="flash <%= k %>"><%= v %></div>
+	<%= content_tag(:div, v, :class => "flash #{k}") %>
 	<% end %>
 	<%= yield %>
       </section>

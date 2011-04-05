@@ -21,6 +21,23 @@ describe "Users" do
 
       end
 
+      it "should clear the password field" do
+        lambda do
+          visit signup_path
+          fill_in "Name", :with => "Fnoo"
+          fill_in "Email", :with => "fonoo@fono.com"
+          fill_in "Password", :with => "asd"
+          fill_in "Confirmation", :with => ""
+          click_button
+
+          response.should render_template('users/new')
+          response.should have_selector("div#error_explanation")
+          response.should have_selector("input", :name => "user[password]", :value => "")
+        end.should_not change(User, :count)
+
+      end
+        
+
     end
 
     describe "success" do
